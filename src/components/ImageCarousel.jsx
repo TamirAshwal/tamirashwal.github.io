@@ -25,19 +25,21 @@ function SlideVideo({ video, tabIndex }) {
   }, [])
 
   return (
-    <video
-      ref={ref}
-      className="carousel__video"
-      src={video.src}
-      poster={video.poster}
-      aria-label={video.alt}
-      tabIndex={tabIndex}
-      muted
-      loop
-      playsInline
-      controls
-      preload="metadata"
-    />
+    <div className="video-frame">
+      <video
+        ref={ref}
+        className="carousel__video"
+        src={video.src}
+        poster={video.poster}
+        aria-label={video.alt}
+        tabIndex={tabIndex}
+        muted
+        loop
+        playsInline
+        controls
+        preload="metadata"
+      />
+    </div>
   )
 }
 
@@ -88,17 +90,15 @@ export default function ImageCarousel({ images, title, onOpen }) {
 
       {count > 1 && (
         <div className="carousel__controls">
+          <button type="button" className="text-button" onClick={() => goTo(index - 1)} disabled={index === 0}>
+            Previous
+          </button>
           <p className="carousel__count" aria-live="polite">
             {index + 1} / {count}
           </p>
-          <div className="carousel__buttons">
-            <button type="button" className="text-button" onClick={() => goTo(index - 1)} disabled={index === 0}>
-              Previous
-            </button>
-            <button type="button" className="text-button" onClick={() => goTo(index + 1)} disabled={index === count - 1}>
-              Next
-            </button>
-          </div>
+          <button type="button" className="text-button" onClick={() => goTo(index + 1)} disabled={index === count - 1}>
+            Next
+          </button>
         </div>
       )}
     </div>

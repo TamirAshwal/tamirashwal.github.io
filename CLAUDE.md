@@ -32,10 +32,10 @@ I handle all git myself. Do NOT run any git commands: no add, commit, push, pull
 - Fonts: Source Serif 4 for headings, IBM Plex Sans for text. Nothing else.
 - Colors: only the tokens defined in :root in src/index.css. Teal for links, focus rings and buttons;
   a pale clay for the intro highlights. Each project picks one colour from the project palette
-  (its number, tags, link hovers and the pale tint behind its media).
+  (its number, tags and link and image hovers). Media show at their own shape, with no background behind them.
 - Layout: prefer asymmetry, generous whitespace and strong type hierarchy over boxes and cards.
   If /design-refs exists, follow those reference screenshots.
-- Radius: 4px everywhere. Shadows: none unless asked. No hover lift effects (a slight image zoom inside its frame is fine).
+- Radius: 4px everywhere. Shadows: none unless asked. No hover lift effects.
 - Before finishing any UI task: if you have a browser/screenshot tool, screenshot the page;
   otherwise ask me for a screenshot. List every element that looks like a generic
   AI template, and fix them.

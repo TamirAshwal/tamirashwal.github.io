@@ -460,31 +460,50 @@ a {
   margin-top: var(--space-3);
 }
 
-.image-button {
+/* Every slide shares one invisible frame (16:10 unless the project sets --media-aspect).
+   The image or video is centred in it at its own shape, with no background around it. */
+.image-button,
+.video-frame {
+  position: relative;
   display: block;
   width: 100%;
+  aspect-ratio: var(--media-aspect, 16 / 10);
   padding: 0;
-  overflow: hidden;
-  border: 1px solid var(--project-pale, var(--color-rule));
-  border-radius: var(--radius);
-  background: var(--project-pale, var(--color-rule));
+  border: 0;
+  background: none;
+}
+
+.image-button {
   cursor: zoom-in;
-  transition: border-color var(--transition);
 }
 
-.image-button:hover {
-  border-color: var(--project-color, var(--color-accent));
+.image-button img,
+.video-frame video {
+  position: absolute;
+  inset: 0;
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+  border-radius: var(--radius);
 }
 
-/* A slight zoom inside the frame on hover; the frame itself stays put. */
-@media (prefers-reduced-motion: no-preference) {
-  .image-button img {
-    transition: transform 500ms ease;
-  }
+/* Hover and keyboard focus ring the picture itself, not the empty frame around it. */
+.image-button img {
+  outline: 2px solid transparent;
+  outline-offset: -2px;
+  transition: outline-color var(--transition);
+}
 
-  .image-button:hover img {
-    transform: scale(1.03);
-  }
+.image-button:hover img {
+  outline-color: var(--project-color, var(--color-accent));
+}
+
+.image-button:focus-visible {
+  outline: none;
+}
+
+.image-button:focus-visible img {
+  outline-color: var(--color-accent);
 }
 
 /* Links and carousel buttons inside a project pick up its colour on hover. */
@@ -494,29 +513,8 @@ a {
   text-decoration-color: var(--project-color);
 }
 
-.image-button:focus-visible {
-  outline-offset: -3px;
-}
-
-/* Every slide shares one frame (16:10 unless the project sets --media-aspect); media are shown whole inside it. */
-.image-button img {
-  width: 100%;
-  aspect-ratio: var(--media-aspect, 16 / 10);
-  object-fit: contain;
-}
-
-.carousel__video {
-  display: block;
-  width: 100%;
-  aspect-ratio: var(--media-aspect, 16 / 10);
-  object-fit: contain;
-  border: 1px solid var(--project-pale, var(--color-rule));
-  border-radius: var(--radius);
-  background: var(--project-pale, var(--color-rule));
-}
-
 .carousel__video:focus-visible {
-  outline-offset: -3px;
+  outline-offset: -2px;
 }
 
 .carousel__track {
@@ -541,22 +539,19 @@ a {
   scroll-snap-align: start;
 }
 
+/* Centred under the media, since narrow images and videos sit in the middle of the frame. */
 .carousel__controls {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
-  margin-top: var(--space-1);
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
 }
 
 .carousel__count {
   color: var(--color-muted);
   font-size: 0.875rem;
   font-variant-numeric: tabular-nums;
-}
-
-.carousel__buttons {
-  display: flex;
-  gap: var(--space-3);
 }
 
 .project__placeholder {
