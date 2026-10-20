@@ -1,7 +1,10 @@
+import { useState } from 'react'
 import { profile } from '../data/profile.js'
 
 export default function ContactLinks() {
   const { github, linkedin, email } = profile.links
+  // The label switches to the address on click, so it stays visible after the mail app prompt.
+  const [showEmail, setShowEmail] = useState(false)
 
   return (
     <ul className="contact-links">
@@ -16,8 +19,8 @@ export default function ContactLinks() {
         </a>
       </li>
       <li>
-        <a className="link" href={`mailto:${email}`}>
-          Email
+        <a className="link" href={`mailto:${email}`} title={email} onClick={() => setShowEmail(true)}>
+          {showEmail ? email : 'Email'}
         </a>
       </li>
     </ul>

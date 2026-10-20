@@ -167,9 +167,15 @@ a {
   transition: color var(--transition), text-decoration-color var(--transition);
 }
 
-.text-button:hover {
+.text-button:hover:not(:disabled) {
   color: var(--color-accent);
   text-decoration-color: var(--color-accent);
+}
+
+.text-button:disabled {
+  color: var(--color-muted);
+  text-decoration-color: transparent;
+  cursor: default;
 }
 
 .contact-links {
@@ -350,6 +356,7 @@ a {
 .project__tags {
   display: flex;
   flex-wrap: wrap;
+  gap: 0.25rem var(--space-2);
   margin: var(--space-2) 0 0;
   padding: 0;
   list-style: none;
@@ -357,14 +364,17 @@ a {
   font-size: 0.9375rem;
 }
 
-.project__tags li + li::before {
-  content: '·';
-  content: '·' / '';
-  margin-inline: 0.6em;
+.project__role {
+  max-width: 46ch;
+  margin-top: var(--space-1);
+  color: var(--color-muted);
+  font-size: 0.9375rem;
 }
 
-.project__repo {
-  display: inline-block;
+.project__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
   margin-top: var(--space-3);
 }
 
@@ -384,17 +394,69 @@ a {
   border-color: var(--color-accent);
 }
 
+.image-button:focus-visible {
+  outline-offset: -3px;
+}
+
+/* Every slide shares one 16:10 frame; images are shown whole inside it. */
 .image-button img {
   width: 100%;
   aspect-ratio: 16 / 10;
-  object-fit: cover;
+  object-fit: contain;
 }
 
-.project__thumbs {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--space-1);
+.carousel__video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius);
+  background: var(--color-rule);
+}
+
+.carousel__video:focus-visible {
+  outline-offset: -3px;
+}
+
+.carousel__track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .carousel__track {
+    scroll-behavior: smooth;
+  }
+}
+
+.carousel__slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+}
+
+.carousel__controls {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
   margin-top: var(--space-1);
+}
+
+.carousel__count {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.carousel__buttons {
+  display: flex;
+  gap: var(--space-3);
 }
 
 .project__placeholder {
