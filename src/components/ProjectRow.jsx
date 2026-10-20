@@ -5,8 +5,8 @@ function assetUrl(path) {
   return `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`
 }
 
-export default function ProjectRow({ project, onOpenImage }) {
-  const { title, description, role, tags, images, link, repoUrl } = project
+export default function ProjectRow({ project, onOpenImage, titleRef }) {
+  const { title, description, role, tags, images, mediaAspect, link, repoUrl } = project
   const slides = images.map((image) => ({
     ...image,
     src: assetUrl(image.src),
@@ -16,7 +16,9 @@ export default function ProjectRow({ project, onOpenImage }) {
   return (
     <li className="project">
       <div className="project__text">
-        <h3 className="project__title">{title}</h3>
+        <h3 className="project__title" ref={titleRef} tabIndex={titleRef ? -1 : undefined}>
+          {title}
+        </h3>
         <p className="project__description">{description}</p>
         {role && <p className="project__role">{role}</p>}
         {tags.length > 0 && (
@@ -38,7 +40,7 @@ export default function ProjectRow({ project, onOpenImage }) {
         </div>
       </div>
 
-      <div className="project__media">
+      <div className="project__media" style={mediaAspect ? { '--media-aspect': mediaAspect } : undefined}>
         {slides.length > 0 ? (
           <ImageCarousel images={slides} title={title} onOpen={onOpenImage} />
         ) : (

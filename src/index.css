@@ -140,7 +140,10 @@ a {
   padding: 0.625rem 1.125rem;
   border: 1px solid var(--color-accent);
   border-radius: var(--radius);
+  background: none;
   color: var(--color-accent);
+  font-family: inherit;
+  cursor: pointer;
   font-size: 0.9375rem;
   font-weight: 500;
   line-height: 1.2;
@@ -343,6 +346,11 @@ a {
   order: -1;
 }
 
+.project-more {
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-rule);
+}
+
 .project__title {
   font-size: clamp(1.5rem, 2.6vw, 2rem);
   font-weight: 600;
@@ -398,17 +406,17 @@ a {
   outline-offset: -3px;
 }
 
-/* Every slide shares one 16:10 frame; images are shown whole inside it. */
+/* Every slide shares one frame (16:10 unless the project sets --media-aspect); media are shown whole inside it. */
 .image-button img {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: var(--media-aspect, 16 / 10);
   object-fit: contain;
 }
 
 .carousel__video {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: var(--media-aspect, 16 / 10);
   object-fit: contain;
   border: 1px solid var(--color-rule);
   border-radius: var(--radius);
@@ -462,7 +470,7 @@ a {
 .project__placeholder {
   display: grid;
   place-items: center;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: var(--media-aspect, 16 / 10);
   border-radius: var(--radius);
   background: var(--color-rule);
   color: var(--color-muted);

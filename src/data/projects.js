@@ -1,11 +1,13 @@
 // Projects, shown in this order. To add one, copy an entry and fill it in.
 //
+// featured: set to false to hide a project behind the "More projects" button (default: shown).
 // title, description, tags, repoUrl: required.
 // link:   optional primary link shown before "View on GitHub", e.g. { label: 'Project page', url: '...' }.
 // role:   optional line for team or supervised projects, e.g. who built what.
 // images: any number, shown in a carousel in this order. Paths are relative to public/,
 //         e.g. { src: 'images/go2/robot.jpg', alt: 'Describe what the image shows' }.
 //         Videos (.mp4/.webm) work too; add poster: 'images/...jpg' for the frame shown before playback.
+// mediaAspect: optional frame shape for the carousel, e.g. '1 / 1' for phone screenshots (default '16 / 10').
 export const projects = [
   {
     id: 'go2-openclaw',
@@ -35,7 +37,26 @@ export const projects = [
     description:
       'Online chess for Android, backed by an authoritative Node.js game server and a custom C++ engine (negamax, alpha-beta, quiescence search, ML-based evaluator) that drives a live evaluation bar, per-move quality feedback and play against the engine. The server provides REST and WebSocket APIs, game clocks, Elo ratings, matchmaking and JWT auth with rotating refresh tokens.',
     tags: ['C++', 'Java (Android)', 'Node.js', 'Express', 'PostgreSQL', 'Docker'],
-    images: [],
+    // Phone screenshots: a square frame keeps them large enough to read.
+    mediaAspect: '1 / 1',
+    images: [
+      {
+        src: 'images/chesswhisper/hero.gif',
+        alt: 'An online game in the ChessWhisper Android app, with both players’ clocks counting down as moves are played.',
+      },
+      {
+        src: 'images/chesswhisper/eval-mode.gif',
+        alt: 'Eval mode: an evaluation bar beside the board shifts as each move is played.',
+      },
+      {
+        src: 'images/chesswhisper/home.png',
+        alt: 'The home screen, showing the player’s rating, games played, recent games, the Classic, Eval bar and Feedback modes, and a Play button.',
+      },
+      {
+        src: 'images/chesswhisper/legal-moves.gif',
+        alt: 'Tapping a bishop highlights only the squares it can legally move to.',
+      },
+    ],
     repoUrl: 'https://github.com/Uziel1305/ChessWhisper-Project',
   },
 ]

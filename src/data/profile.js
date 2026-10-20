@@ -3,7 +3,7 @@ export const profile = {
   name: 'Tamir Ashwal',
   title: "Master's student in Information Science, Bar-Ilan University",
   intro:
-    "I build software that connects high-level reasoning to physical robots. In the Robotics Lab at Bar-Ilan University I develop an LLM-based control system for the Unitree Go2 quadruped, alongside my master's in Information Science and studies in Computer Science.",
+    "I build software for robots and AI systems. My work focuses on physical AI, human-robot interaction and algorithms, from LLM-based robot control to search engines for games. I'm doing a master's in Information Science and studying Computer Science at Bar-Ilan University.",
   about: [
     'I study at Bar-Ilan University, focusing on robotics, human-robot interaction, algorithms and systems programming. I work in Python, C++, Java and C, with ROS2 for robotics.',
   ],
