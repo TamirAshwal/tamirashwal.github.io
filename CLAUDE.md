@@ -21,8 +21,8 @@ I handle all git myself. Do NOT run any git commands: no add, commit, push, pull
 
 - Formal and professional, but pleasant to look at
 - Elegant and modern, with lots of whitespace — not dense or cluttered
-- Restrained palette (neutral base + one accent color), strong typography (one or two Google Fonts max)
-- Subtle hover states and transitions only; no flashy animations
+- Restrained palette: warm ivory base with a soft sand band behind Projects, a teal accent, clay intro highlights and one colour per project; strong typography (one or two Google Fonts max)
+- Subtle hover states and transitions only; no flashy animations. The one exception: project rows fade in gently once on scroll (off under reduced motion)
 - Fully responsive — recruiters often open links on their phone
 - Accessible: semantic HTML, alt text on images, good contrast, visible focus states
 ## Design rules (anti-template)
@@ -30,10 +30,12 @@ I handle all git myself. Do NOT run any git commands: no add, commit, push, pull
   Inter/Roboto/Arial, 3-column feature card grids, generic marketing copy
   ("passionate", "innovative", "cutting-edge", etc.).
 - Fonts: Source Serif 4 for headings, IBM Plex Sans for text. Nothing else.
-- Colors: only the tokens defined in :root in src/index.css. One accent color, used sparingly.
+- Colors: only the tokens defined in :root in src/index.css. Teal for links, focus rings and buttons;
+  a pale clay for the intro highlights. Each project picks one colour from the project palette
+  (its number, tags, link hovers and the pale tint behind its media).
 - Layout: prefer asymmetry, generous whitespace and strong type hierarchy over boxes and cards.
   If /design-refs exists, follow those reference screenshots.
-- Radius: 4px everywhere. Shadows: none unless asked. No hover lift effects.
+- Radius: 4px everywhere. Shadows: none unless asked. No hover lift effects (a slight image zoom inside its frame is fine).
 - Before finishing any UI task: if you have a browser/screenshot tool, screenshot the page;
   otherwise ask me for a screenshot. List every element that looks like a generic
   AI template, and fix them.

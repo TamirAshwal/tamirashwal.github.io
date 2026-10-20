@@ -3,12 +3,26 @@
    ========================================================================== */
 
 :root {
-  --color-bg: #fafaf7;
+  --color-bg: #faf8f3;
   --color-ink: #1a1d21;
   --color-muted: #5a6169;
-  --color-rule: #e4e2dc;
+  --color-rule: #e6e1d6;
   --color-accent: #1f5e5a;
+  --color-accent-strong: #164542;
+  --color-highlight: #f0d3c2;
+  --color-band: #f3eee4;
+  --color-band-rule: #e3dccd;
   --color-backdrop: rgb(26 29 33 / 0.88);
+
+  /* Project palette: each project picks one (strong for text, pale for its media frame). */
+  --project-teal: #1f5e5a;
+  --project-teal-pale: #dcebe6;
+  --project-violet: #5b3fa8;
+  --project-violet-pale: #e8e2f6;
+  --project-clay: #a84a24;
+  --project-clay-pale: #f4e2d7;
+  --project-blue: #2f5c9e;
+  --project-blue-pale: #dfe8f4;
 
   --font-serif: 'Source Serif 4', serif;
   --font-sans: 'IBM Plex Sans', sans-serif;
@@ -140,7 +154,7 @@ a {
   padding: 0.625rem 1.125rem;
   border: 1px solid var(--color-accent);
   border-radius: var(--radius);
-  background: none;
+  background: transparent;
   color: var(--color-accent);
   font-family: inherit;
   cursor: pointer;
@@ -154,6 +168,17 @@ a {
 .button:hover {
   background: var(--color-accent);
   color: var(--color-bg);
+}
+
+/* Filled variant for the main action (Download CV). */
+.button--primary {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.button--primary:hover {
+  border-color: var(--color-accent-strong);
+  background: var(--color-accent-strong);
 }
 
 .text-button {
@@ -306,6 +331,15 @@ a {
   font-size: 1.1875rem;
 }
 
+/* Marker-style emphasis: a thick, offset underline painted behind the words. */
+.highlight {
+  text-decoration: underline;
+  text-decoration-color: var(--color-highlight);
+  text-decoration-thickness: 0.55em;
+  text-underline-offset: -0.4em;
+  text-decoration-skip-ink: none;
+}
+
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
@@ -325,9 +359,27 @@ a {
 }
 
 .project {
+  --project-color: var(--project-clay);
+  --project-pale: var(--project-clay-pale);
+
   display: grid;
   gap: var(--space-3);
   padding-block: var(--space-5);
+}
+
+.project--teal {
+  --project-color: var(--project-teal);
+  --project-pale: var(--project-teal-pale);
+}
+
+.project--violet {
+  --project-color: var(--project-violet);
+  --project-pale: var(--project-violet-pale);
+}
+
+.project--blue {
+  --project-color: var(--project-blue);
+  --project-pale: var(--project-blue-pale);
 }
 
 .project:first-child {
@@ -351,9 +403,30 @@ a {
   border-top: 1px solid var(--color-rule);
 }
 
+.project__number {
+  margin-bottom: var(--space-1);
+  color: var(--project-color);
+  font-family: var(--font-serif);
+  font-size: clamp(2.25rem, 4vw, 3rem);
+  line-height: 1;
+}
+
 .project__title {
   font-size: clamp(1.5rem, 2.6vw, 2rem);
   font-weight: 600;
+}
+
+/* Rows fade in once as they enter the viewport. The classes are only added by script
+   when motion is allowed, so without JS or under reduced motion rows are simply visible. */
+.reveal {
+  opacity: 0;
+  transform: translateY(1rem);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  transition: opacity 600ms ease-out, transform 600ms ease-out;
 }
 
 .project__description {
@@ -368,8 +441,9 @@ a {
   margin: var(--space-2) 0 0;
   padding: 0;
   list-style: none;
-  color: var(--color-muted);
+  color: var(--project-color);
   font-size: 0.9375rem;
+  font-weight: 500;
 }
 
 .project__role {
@@ -391,15 +465,33 @@ a {
   width: 100%;
   padding: 0;
   overflow: hidden;
-  border: 1px solid var(--color-rule);
+  border: 1px solid var(--project-pale, var(--color-rule));
   border-radius: var(--radius);
-  background: var(--color-rule);
+  background: var(--project-pale, var(--color-rule));
   cursor: zoom-in;
   transition: border-color var(--transition);
 }
 
 .image-button:hover {
-  border-color: var(--color-accent);
+  border-color: var(--project-color, var(--color-accent));
+}
+
+/* A slight zoom inside the frame on hover; the frame itself stays put. */
+@media (prefers-reduced-motion: no-preference) {
+  .image-button img {
+    transition: transform 500ms ease;
+  }
+
+  .image-button:hover img {
+    transform: scale(1.03);
+  }
+}
+
+/* Links and carousel buttons inside a project pick up its colour on hover. */
+.project .link:hover,
+.project .text-button:hover:not(:disabled) {
+  color: var(--project-color);
+  text-decoration-color: var(--project-color);
 }
 
 .image-button:focus-visible {
@@ -418,9 +510,9 @@ a {
   width: 100%;
   aspect-ratio: var(--media-aspect, 16 / 10);
   object-fit: contain;
-  border: 1px solid var(--color-rule);
+  border: 1px solid var(--project-pale, var(--color-rule));
   border-radius: var(--radius);
-  background: var(--color-rule);
+  background: var(--project-pale, var(--color-rule));
 }
 
 .carousel__video:focus-visible {
@@ -472,7 +564,7 @@ a {
   place-items: center;
   aspect-ratio: var(--media-aspect, 16 / 10);
   border-radius: var(--radius);
-  background: var(--color-rule);
+  background: var(--project-pale, var(--color-rule));
   color: var(--color-muted);
   font-size: 0.875rem;
 }
@@ -495,6 +587,25 @@ a {
   .project__text {
     padding-top: var(--space-1);
   }
+}
+
+/* ==========================================================================
+   Sand band — full-width warm tint behind Projects
+   ========================================================================== */
+
+.band {
+  background: var(--color-band);
+}
+
+/* The band's edges replace the hairline rules at its borders. */
+.band .section,
+.band + .container .section {
+  border-top: 0;
+}
+
+.band .project + .project,
+.band .project-more {
+  border-top-color: var(--color-band-rule);
 }
 
 /* ==========================================================================

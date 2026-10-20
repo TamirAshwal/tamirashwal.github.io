@@ -8,9 +8,12 @@
 //         e.g. { src: 'images/go2/robot.jpg', alt: 'Describe what the image shows' }.
 //         Videos (.mp4/.webm) work too; add poster: 'images/...jpg' for the frame shown before playback.
 // mediaAspect: optional frame shape for the carousel, e.g. '1 / 1' for phone screenshots (default '16 / 10').
+// color:  optional project colour: 'teal', 'violet', 'blue' or 'clay' (default 'clay'). Used for the
+//         project number, tags, link hovers and the tint behind its images.
 export const projects = [
   {
     id: 'go2-openclaw',
+    color: 'teal',
     title: 'Unitree Go2 — OpenClaw',
     description:
       'A Unitree Go2 quadruped that takes plain-language instructions over Telegram. An LLM-based dispatcher maps each request to a skill from a modular library of Python skills over the Unitree SDK (DDS), so the robot only runs validated, safety-constrained actions and the model never touches a motor.',
@@ -33,6 +36,7 @@ export const projects = [
   },
   {
     id: 'chesswhisper',
+    color: 'violet',
     title: 'ChessWhisper — AI chess platform',
     description:
       'Online chess for Android, backed by an authoritative Node.js game server and a custom C++ engine (negamax, alpha-beta, quiescence search, ML-based evaluator) that drives a live evaluation bar, per-move quality feedback and play against the engine. The server provides REST and WebSocket APIs, game clocks, Elo ratings, matchmaking and JWT auth with rotating refresh tokens.',

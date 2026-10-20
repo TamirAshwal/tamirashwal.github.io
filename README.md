@@ -9,7 +9,7 @@ Built with Vite and React. `.github/workflows/deploy.yml` builds and deploys it 
 - Profile, links and About text: `src/data/profile.js`
 - Projects: `src/data/projects.js` (fields are documented at the top of the file)
 - Images: `public/images/<project>/`, referenced from `projects.js`
-- CV: `public/cv.pdf`
+- CV: `public/Tamir_Ashwal_CV.pdf`
 
 ## Local development
 

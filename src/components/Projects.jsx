@@ -20,14 +20,15 @@ export default function Projects() {
     <section id="projects" className="section section--wide" aria-labelledby="projects-heading">
       <h2 id="projects-heading" className="section__label">Projects</h2>
       <ul className="section__body project-list">
-        {featured.map((project) => (
-          <ProjectRow key={project.id} project={project} onOpenImage={setActiveImage} />
+        {featured.map((project, i) => (
+          <ProjectRow key={project.id} project={project} number={i + 1} onOpenImage={setActiveImage} />
         ))}
         {showMore &&
           more.map((project, i) => (
             <ProjectRow
               key={project.id}
               project={project}
+              number={featured.length + i + 1}
               onOpenImage={setActiveImage}
               titleRef={i === 0 ? firstMoreRef : undefined}
             />

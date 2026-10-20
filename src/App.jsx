@@ -9,10 +9,18 @@ export default function App() {
     <>
       <a className="skip-link" href="#main">Skip to content</a>
       <Header />
-      <main id="main" className="container">
-        <Hero />
-        <Projects />
-        <About />
+      <main id="main">
+        <div className="container">
+          <Hero />
+        </div>
+        <div className="band">
+          <div className="container">
+            <Projects />
+          </div>
+        </div>
+        <div className="container">
+          <About />
+        </div>
       </main>
       <Footer />
     </>
